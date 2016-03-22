@@ -1,4 +1,4 @@
-#!/bin/bash -v
+#!/bin/bash
 #importing devUtil
 source ./devUtil.sh
 
