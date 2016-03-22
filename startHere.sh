@@ -27,6 +27,27 @@ if [[ ! -d ~/$uname ]];
 fi
 
 
+echo "Which cloud would you like to deploy to?";
+echo "1. Amazon Web Services"
+echo "2. Microsoft Azure"
+echo "[q to quit]"
+read -n 1 cloudChoice
+printf "\nYou chose $choice"
+
+case $cloudChoice in [qQ]) exit;; esac
+
+if [ $cloudChoice == 1 ]
+    then
+    cloudChoice="AWS"
+fi
+
+if [ $cloudChoice == 2 ]
+    then
+    cloudChoice="Azure"
+fi
+
+
+
 cd ~/$uname/dmcdeploy
 echo "Updating the repo"
 git pull
