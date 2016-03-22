@@ -22,7 +22,7 @@ resource "aws_instance" "git" {
 
 
 provisioner "file" {
-        source = "../scripts/deployMe_git.sh"
+        source = "scripts/deployMe_git.sh"
         destination = "/tmp/script.sh"
 
        connection {

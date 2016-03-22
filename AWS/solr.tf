@@ -24,7 +24,7 @@ resource "aws_instance" "solr" {
 
 
   provisioner "file" {
-        source = "../scripts/deployMe_solr.sh"
+        source = "scripts/deployMe_solr.sh"
         destination = "/tmp/script.sh"
 
        connection {

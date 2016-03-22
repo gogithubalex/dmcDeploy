@@ -20,7 +20,7 @@ resource "aws_instance" "db" {
 
 
   provisioner "file" {
-        source = "../scripts/deployMe_db.sh"
+        source = "scripts/deployMe_db.sh"
         destination = "/tmp/script.sh"
 
        connection {
