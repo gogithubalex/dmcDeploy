@@ -277,3 +277,5 @@ activeMqRootPass=$sec4
 
 
 echo " The next step is to verify your terraform.tfvars file and execute terraform apply."
+
+mv terraform.tfvars $2/.

@@ -68,7 +68,7 @@ if [ $choice == 1 ]
 
    if [ -f terraform.tfstate ]
      then
-       terraform show
+       terraform show $cloudChoice
        printf "You have existing infrastructure on aws."
 
        printf "If you continue this script will edit that infrastructure in place.\n Would you like to continue? [y] [q to quit].\n You may wish to quit now and use terraform destroy to remove the infrastructure and rerun this script to make a new set.\n"
@@ -86,14 +86,14 @@ if [ $choice == 1 ]
     read -n 1 schoice
     if [ $schoice == 1 ]; then
       printf "\nCreating Developmnet Stack"
-      ./populateTerraformtfvarsDev.sh $uname
+      ./populateTerraformtfvarsDev.sh $uname $cloudChoice
     else
       printf "\n Production Stack"
       printf "\n That part is not yet automated."
 
     fi
 
-    terraform plan
+    terraform plan $cloudChoice
     printf  "\n Are you happy with the terrafom plan described above? \n Must answer yes or progam will not create your infrastructure. \n If you disagree go back and edit your terrafom.tfvars file manually and execute terraform apply.  [yes][q to quit] "
     read apply
     case $apply in [qQ]) exit;; esac
