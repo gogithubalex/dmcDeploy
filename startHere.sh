@@ -99,7 +99,7 @@ if [ $choice == 1 ]
     case $apply in [qQ]) exit;; esac
     if [ $apply == yes ]
       then
-        terraform apply
+        terraform apply $cloudChoice
         echo "Results of Sanity Test Front"
         cat frontSanityTest.log
         echo "Results of Sanity Test Rest"
