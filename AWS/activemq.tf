@@ -25,7 +25,7 @@ resource "aws_instance" "activeMq" {
 
 
   provisioner "file" {
-        source = "deployMe_active.sh"
+        source = "../scripts/deployMe_active.sh"
         destination = "/tmp/script.sh"
 
        connection {

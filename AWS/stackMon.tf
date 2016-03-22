@@ -21,7 +21,7 @@ resource "aws_instance" "stackMon" {
 
 
   provisioner "file" {
-        source = "deployMe_stackMon.sh"
+        source = "../scripts/deployMe_stackMon.sh"
         destination = "/tmp/script.sh"
 
        connection {

@@ -22,7 +22,7 @@ resource "aws_instance" "rest" {
 
 
   provisioner "file" {
-        source = "deployMe_rest.sh"
+        source = "../scripts/deployMe_rest.sh"
         destination = "/tmp/script.sh"
 
        connection {

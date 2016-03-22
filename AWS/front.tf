@@ -49,7 +49,7 @@ provisioner "remote-exec"{
 
 
 provisioner "file" {
-        source = "deployMe_front.sh"
+        source = "../scripts/deployMe_front.sh"
         destination = "/tmp/script.sh"
 
        connection {
