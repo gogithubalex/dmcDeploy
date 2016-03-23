@@ -34,6 +34,11 @@ resource "azure_instance" "basic-server" {
     }
 
     provisioner "file" {
+        source = "../scripts/createAmiBase/buildMachineImage_solr.sh"
+        destination = "/tmp/BaseScript.sh"
+    }
+
+    provisioner "file" {
         source = "buildMachineImage_solr.sh"
         destination = "/tmp/script.sh"
     }
@@ -42,6 +47,7 @@ resource "azure_instance" "basic-server" {
             inline = [
             "chmod +x /tmp/script.sh",
             "cd /tmp",
+            "bash -x BaseScript.sh.sh 2>&1 | tee out.log",
             "bash -x script.sh 2>&1 | tee out.log"
             ]
 
