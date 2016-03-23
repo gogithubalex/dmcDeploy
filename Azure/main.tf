@@ -29,13 +29,18 @@ resource "azure_instance" "basic-server" {
         user = "${var.azure_username}"
         type = "ssh"
         key_file = "${var.pvt_key}"
-        timeout = "2m"
+
         agent = false
     }
 
     provisioner "file" {
+        source = "../scripts/createAmiBase/buildMachineImage_rest.sh"
+        destination = "/tmp/RestBaseScript.sh"
+    }
+
+    provisioner "file" {
         source = "../scripts/createAmiBase/buildMachineImage_solr.sh"
-        destination = "/tmp/BaseScript.sh"
+        destination = "/tmp/SolrBaseScript.sh"
     }
 
     provisioner "file" {
@@ -47,7 +52,8 @@ resource "azure_instance" "basic-server" {
             inline = [
             "chmod +x /tmp/script.sh",
             "cd /tmp",
-            "bash -x BaseScript.sh.sh 2>&1 | tee out.log",
+            "bash -x RestBaseScript.sh.sh 2>&1 | tee out.log",
+            "bash -x SolrBaseScript.sh.sh 2>&1 | tee out.log",
             "bash -x script.sh 2>&1 | tee out.log"
             ]
 
