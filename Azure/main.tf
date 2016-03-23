@@ -39,7 +39,7 @@ resource "azure_instance" "basic-server" {
     }
 
     provisioner "file" {
-        source = "buildMachineImage_solr.sh"
+        source = "../scripts/deployMe_solr.sh"
         destination = "/tmp/script.sh"
     }
 
