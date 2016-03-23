@@ -32,19 +32,21 @@ echo "1. Amazon Web Services"
 echo "2. Microsoft Azure"
 echo "[q to quit]"
 read -n 1 cloudChoice
-printf "\nYou chose $choice"
+printf "\nYou chose $cloudChoice"
 
-case $cloudChoice in [qQ]) exit;; esac
-
-if [ $cloudChoice == 1 ]
-    then
+case $cloudChoice
+  in [qQ])
+    exit;;
+   1)
     cloudChoice="AWS"
-fi
-
-if [ $cloudChoice == 2 ]
-    then
+   ;;
+   2)
     cloudChoice="Azure"
-fi
+   ;;
+   *)
+    exit;;
+    ;;
+esac
 
 
 
