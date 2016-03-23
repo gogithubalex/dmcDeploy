@@ -25,6 +25,13 @@ resource "azure_instance" "basic-server" {
         private_port = 80
     }
 
+    endpoint {
+        name = "solr"
+        protocol = "tcp"
+        public_port = 8983
+        private_port = 8983
+    }
+
     connection {
         user = "${var.azure_username}"
         type = "ssh"
