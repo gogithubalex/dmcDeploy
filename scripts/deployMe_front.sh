@@ -266,7 +266,8 @@ moveShibbolethServiceProviderKeys
 ## update shibboleth SP entityID
 sudo -u root -E sed -i "s@test.projectdmc.org@$serverURL@" /opt/shibboleth-sp/etc/shibboleth/shibboleth2.xml
 
-sudo -u root -E sed -i "s@REMOTE_USER=\"eppn persistent-id targeted-id\"@REMOTE_USER=\"eppn persistent-id targeted-id\" attributePrefix=\"AJP_\"@" /opt/shibboleth-sp/etc/shibboleth/shibboleth2.xml
+## no longer needed.  AJP reright added to shibboleth2.xml file
+##sudo -u root -E sed -i "s@REMOTE_USER=\"eppn persistent-id targeted-id\"@REMOTE_USER=\"eppn persistent-id targeted-id\" attributePrefix=\"AJP_\"@" /opt/shibboleth-sp/etc/shibboleth/shibboleth2.xml
 
 
 
