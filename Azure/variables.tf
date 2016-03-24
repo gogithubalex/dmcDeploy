@@ -25,3 +25,12 @@ variable "azure_username" {}
 
 variable "location" {}
 variable "solr_name" {}
+
+
+variable "db_name" {}
+
+variable "rest_name" {}
+
+variable "front_name" {}
+
+variable "cloudChoice" {}
