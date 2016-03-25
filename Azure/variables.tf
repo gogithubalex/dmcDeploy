@@ -34,3 +34,5 @@ variable "rest_name" {}
 variable "front_name" {}
 
 variable "cloudChoice" {}
+
+variable "stack_prefix" {}

@@ -1,6 +1,6 @@
 
 resource "azure_instance" "solr" {
-    name = "${var.solr_name}"
+    name = "${var.stack_prefix}${var.solr_name}"
     image = "OpenLogic 7.2"
     size = "Basic_A2"
     storage_service_name = "${var.storage_service_name}"
@@ -65,4 +65,3 @@ resource "azure_instance" "solr" {
     }
 
 }
-

@@ -1,5 +1,5 @@
 resource "azure_instance" "db" {
-    name = "${var.db_name}"
+    name = "${var.stack_prefix}${var.db_name}"
     image = "OpenLogic 7.2"
     size = "Basic_A2"
     storage_service_name = "${var.storage_service_name}"
