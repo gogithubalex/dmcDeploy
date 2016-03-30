@@ -4,16 +4,16 @@ source ../devUtils/devUtil.sh
 
 
 # git checkout terraform.tfvars
-rm ../terraform.tfvars
-touch ../terraform.tfvars
+rm terraform.tfvars
+touch terraform.tfvars
 
-echo 'access_key = ""' >> ../terraform.tfvars
-echo 'secret_key = ""' >> ../terraform.tfvars
+echo 'access_key = ""' >> terraform.tfvars
+echo 'secret_key = ""' >> terraform.tfvars
 
 
 
 # this will add the Personal Identifiable Information aws parameter is location of tfvars file
-addPII ../terraform.tfvars
+addPII terraform.tfvars
 
 
 
@@ -201,7 +201,7 @@ activeMqRootPass=$sec4
  kname="DMCDriver"
  echo "Your key name is $kname"
 
- echo "Edit terraform.tfvars as appropriate."
+ echo "Editing terraform.tfvars as appropriate."
 
 
 
@@ -209,68 +209,68 @@ activeMqRootPass=$sec4
 
 
 
- echo "aws_region = \"us-west-2\"" >> ../terraform.tfvars
- echo "stackPrefix = \"$stackPrefix\"" >> ../terraform.tfvars
- echo "use_swagger= \"1\"" >> ../terraform.tfvars
- echo "release = \"hot\"" >> ../terraform.tfvars
+ echo "aws_region = \"us-west-2\"" >> terraform.tfvars
+ echo "stackPrefix = \"$stackPrefix\"" >> terraform.tfvars
+ echo "use_swagger= \"1\"" >> terraform.tfvars
+ echo "release = \"hot\"" >> terraform.tfvars
 
- echo "key_name_front = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_front = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
- echo "commit_front = \"$commit_front\"" >> ../terraform.tfvars
-
-
+ echo "key_name_front = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_front = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
+ echo "commit_front = \"$commit_front\"" >> terraform.tfvars
 
 
 
- echo "key_name_rest = \"$kname\""  >> ../terraform.tfvars
- echo "key_full_path_rest = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
- echo "commit_rest = \"$commit_rest\"" >> ../terraform.tfvars
-
-#
- echo "key_name_db = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_db = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
 
 
+ echo "key_name_rest = \"$kname\""  >> terraform.tfvars
+ echo "key_full_path_rest = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
+ echo "commit_rest = \"$commit_rest\"" >> terraform.tfvars
+
 #
- echo "PSQLUSER = \"$pg_user\"" >> ../terraform.tfvars
- echo "PSQLPASS = \"$pg_user_pass\"" >> ../terraform.tfvars
- echo "PSQLDBNAME = \"$pg_db_name\"" >> ../terraform.tfvars
+ echo "key_name_db = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_db = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
+
+
+#
+ echo "PSQLUSER = \"$pg_user\"" >> terraform.tfvars
+ echo "PSQLPASS = \"$pg_user_pass\"" >> terraform.tfvars
+ echo "PSQLDBNAME = \"$pg_db_name\"" >> terraform.tfvars
 #
 #
 #
 #
- echo "key_name_solr = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_solr = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
+ echo "key_name_solr = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_solr = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
 #
 #
- echo "key_name_activeMq = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_activeMq = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
- echo "activeMqUserPass = \"$activeMqUserPass\"" >> ../terraform.tfvars
- echo "activeMqRootPass = \"$activeMqRootPass\"" >> ../terraform.tfvars
- echo "commit_activeMq = \"$commit_activeMq\"" >> ../terraform.tfvars
+ echo "key_name_activeMq = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_activeMq = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
+ echo "activeMqUserPass = \"$activeMqUserPass\"" >> terraform.tfvars
+ echo "activeMqRootPass = \"$activeMqRootPass\"" >> terraform.tfvars
+ echo "commit_activeMq = \"$commit_activeMq\"" >> terraform.tfvars
 
 #
 #
 #
- echo "key_name_stackMon = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_stackMon = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
+ echo "key_name_stackMon = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_stackMon = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
 #
- echo "key_name_dome = \"$kname\"" >> ../terraform.tfvars
- echo "key_full_path_dome = \"/home/ec2-user/keys/$kname.pem\"" >> ../terraform.tfvars
- echo "dome_server_user = \"$dome_server_user\"" >> ../terraform.tfvars
- echo "dome_server_pw = \"$dome_server_pw\"" >> ../terraform.tfvars
- echo "commit_dome = \"$commit_dome\"" >> ../terraform.tfvars
-#
-#
+ echo "key_name_dome = \"$kname\"" >> terraform.tfvars
+ echo "key_full_path_dome = \"/home/ec2-user/keys/$kname.pem\"" >> terraform.tfvars
+ echo "dome_server_user = \"$dome_server_user\"" >> terraform.tfvars
+ echo "dome_server_pw = \"$dome_server_pw\"" >> terraform.tfvars
+ echo "commit_dome = \"$commit_dome\"" >> terraform.tfvars
 #
 #
 #
 #
 #
 #
-echo "loglevel = \"development\"" >> ../terraform.tfvars
 #
-echo "serverURL = \"$serverURL\"" >> ../terraform.tfvars
+#
+echo "loglevel = \"development\"" >> terraform.tfvars
+#
+echo "serverURL = \"$serverURL\"" >> terraform.tfvars
 #
 #  myip=$(curl http://ident.me/)
 #  echo "To download the private key you have just created run the following command to copy it to the local machine of your wish."
