@@ -1,6 +1,6 @@
 #!/bin/bash
 #importing devUtil
-source ../../devUtils/devUtil.sh
+source ../devUtils/devUtil.sh
 
 
 # git checkout terraform.tfvars
