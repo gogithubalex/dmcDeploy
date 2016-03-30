@@ -4,6 +4,7 @@ source ../devUtils/devUtil.sh
 
 
 # git checkout terraform.tfvars
+
 rm terraform.tfvars
 touch terraform.tfvars
 
