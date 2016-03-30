@@ -100,7 +100,7 @@ getFromTfVars () {
 ####
 # Will cleanup any PII on EXIT
 ####
-function finish {
-  removePII ../terraform.tfvars
-}
-trap finish EXIT
+# function finish {
+#   removePII ../terraform.tfvars
+# }
+# trap finish EXIT
