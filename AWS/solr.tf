@@ -24,7 +24,7 @@ resource "aws_instance" "solr" {
 
 
   provisioner "file" {
-        source = "scripts/deployMe_solr.sh"
+        source = "../scripts/deployMe_solr.sh"
         destination = "/tmp/script.sh"
 
        connection {
@@ -33,12 +33,12 @@ resource "aws_instance" "solr" {
     }
     }
 
-  
+
    provisioner "remote-exec" {
         inline = [
         "sudo echo 'export solrDbDns=${aws_instance.db.private_ip}' >> /tmp/profile",
-        "echo 'export release=${var.release}' >> /tmp/profile",  
-        "sudo bash -c 'cat /tmp/profile >> /etc/profile' ",   
+        "echo 'export release=${var.release}' >> /tmp/profile",
+        "sudo bash -c 'cat /tmp/profile >> /etc/profile' ",
         "source /etc/profile" ,
         "chmod +x /tmp/script.sh",
         "cd /tmp",
@@ -58,4 +58,3 @@ resource "aws_instance" "solr" {
     Name = "${var.stackPrefix}DMC-solr"
   }
 }
-

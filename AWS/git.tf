@@ -5,12 +5,12 @@ resource "aws_instance" "git" {
   #depends_on = ["aws_instance.rest"]
 
   # Lookup the correct AMI based on the region
-  # define what aim to launch 
+  # define what aim to launch
   ami = "${lookup(var.aws_amirehl, var.aws_region)}"
   # The name of our SSH keypair you've created and downloaded
   # from the AWS console.
   #
- 
+
  key_name = "${var.key_name}"
 
   # Our Security group to allow HTTP and SSH access
@@ -22,7 +22,7 @@ resource "aws_instance" "git" {
 
 
 provisioner "file" {
-        source = "scripts/deployMe_git.sh"
+        source = "../scripts/deployMe_git.sh"
         destination = "/tmp/script.sh"
 
        connection {
@@ -38,7 +38,7 @@ provisioner "remote-exec" {
         "chmod +x /tmp/script.sh",
         "cd /tmp",
         "sudo ./script.sh"
-        
+
         ]
 
         connection {

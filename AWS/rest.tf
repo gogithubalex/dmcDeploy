@@ -13,7 +13,7 @@ resource "aws_instance" "rest" {
   #
 
  key_name = "${var.key_name_rest}"
- 
+
   # Our Security group to allow HTTP and SSH accessing
   security_groups = ["${aws_security_group.sg_rest.name}"]
 
@@ -22,7 +22,7 @@ resource "aws_instance" "rest" {
 
 
   provisioner "file" {
-        source = "scripts/deployMe_rest.sh"
+        source = "../scripts/deployMe_rest.sh"
         destination = "/tmp/script.sh"
 
        connection {
@@ -42,7 +42,7 @@ resource "aws_instance" "rest" {
         "echo 'export commit_rest=${var.commit_rest}' >> /tmp/profile",
         "echo 'export solrDbDns=http://${aws_instance.solr.public_ip}:8983/solr/' >> /tmp/profile",
         "echo 'export use_swagger=${var.use_swagger}' >> /tmp/profile",
-        "sudo bash -c 'cat /tmp/profile >> /etc/profile' ",   
+        "sudo bash -c 'cat /tmp/profile >> /etc/profile' ",
         "source /etc/profile" ,
         "chmod +x /tmp/script.sh",
         "cd /tmp",
@@ -68,4 +68,3 @@ resource "aws_instance" "rest" {
   }
 
 }
-

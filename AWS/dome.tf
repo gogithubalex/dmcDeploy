@@ -21,7 +21,7 @@ resource "aws_instance" "dome" {
 
 
   provisioner "file" {
-        source = "scripts/deployMe_dome.sh"
+        source = "../scripts/deployMe_dome.sh"
         destination = "/tmp/script.sh"
 
        connection {

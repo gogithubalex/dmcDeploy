@@ -1,7 +1,7 @@
 
 resource "aws_instance" "stackMon" {
   instance_type = "m4.large"
-  
+
 
   # Lookup the correct AMI based on the region
   # we specified
@@ -21,7 +21,7 @@ resource "aws_instance" "stackMon" {
 
 
   provisioner "file" {
-        source = "scripts/deployMe_stackMon.sh"
+        source = "../scripts/deployMe_stackMon.sh"
         destination = "/tmp/script.sh"
 
        connection {
@@ -30,10 +30,10 @@ resource "aws_instance" "stackMon" {
     }
     }
 
-  
+
    provisioner "remote-exec" {
         inline = [
-        "echo 'export commit_front=${var.commit_front}' >> /tmp/profile",   
+        "echo 'export commit_front=${var.commit_front}' >> /tmp/profile",
         "sudo bash -c 'cat /tmp/profile >> /etc/profile' ",
         "source /etc/profile" ,
         "chmod +x /tmp/script.sh",
