@@ -114,16 +114,16 @@ if [ $choice == 1 ]
         printf "\nResults of Sanity Test Rest"
         cat restSanityTest.log
         printf "\nLink the Stack Machines Together"
-        ./linkMachines.sh
+        scripts/linkMachines.sh
         printf "\nTightening the Dev Security groups where apropriate for the Dev Stack."
-        ./tightenSgDev.sh
+        scripts/tightenSgDev.sh
         printf "\nLastly you must add your infrastructure to the appropriate LOAD BALANCER -- ex. ben-web in aws-west-2"
 
         printf "\nGreat Job Pal. "
       else
        exit
     fi
-    removePII ../terraform.tfvars
+    removePII terraform.tfvars
 fi
 
 
