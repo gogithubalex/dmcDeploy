@@ -272,6 +272,8 @@ activeMqRootPass=$sec4
 echo "loglevel = \"development\"" >> terraform.tfvars
 #
 echo "serverURL = \"$serverURL\"" >> terraform.tfvars
+
+echo "restLb = \"none\"" >> terraform.tfvars
 #
 #  myip=$(curl http://ident.me/)
 #  echo "To download the private key you have just created run the following command to copy it to the local machine of your wish."
