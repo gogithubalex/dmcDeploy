@@ -1,15 +1,16 @@
 #!/bin/bash
 #importing devUtil
-source ./devUtil.sh
+source devUtils/devUtil.sh
 
-echo "The following script will help you dmcdeploy and manage your development stack."
-echo "###############################################################################################"
 
-echo -n "What is your name. Each user will get a dir created that allows multiple people to use the same machine [ENTER][q to quit] "
+spacer The following script will help you deploy and manage your DMC stack.
+printf "\n###############################################################################################"
+
+printf " \nThis script will create a user specific directory for you. \nWhat shall we call thee? [ENTER][q to quit] "
 read uname
 if [ -z "$uname" ]
   then
-    echo "No arguments supplied quitting"
+    printf "\nNo arguments supplied quitting"
     exit
 fi
 case $uname in [qQ]) exit;; esac
@@ -17,20 +18,31 @@ case $uname in [qQ]) exit;; esac
 if [[ ! -d ~/$uname ]];
    then
     # dir does not exist under that name make it
-    echo "Creating your work dir in ~/$uname"
+    printf "\nCreating your work dir in ~/$uname"
     mkdir ~/$uname
     cd ~/$uname/
     # clone dmcdeploy
-    echo "Clonning dmcdeploy into your directory"
+    printf "\nClonning dmcdeploy into your directory"
     git clone https://bitbucket.org/DigitalMfgCommons/dmcdeploy.git
+  else
+    printf "\nGood to see you again $uname.";
+    printf "\nNavigating to ~/$uname";
+
 
 fi
 
 
-echo "Which cloud would you like to deploy to?";
-echo "1. Amazon Web Services"
-echo "2. Microsoft Azure"
-echo "[q to quit]"
+
+cd ~/$uname/dmcdeploy
+git checkout DMC-590-deploy-ui-labs-instance
+printf "\nUpdating the repo ..."
+git pull
+printf "\nYour code base is up to date.";
+
+printf "\nWhich cloud would you like to deploy to?";
+printf "\n1. Amazon Web Services"
+printf "\n2. Microsoft Azure"
+printf "\n[q to quit]"
 read -n 1 cloudChoice
 printf "\nYou chose $cloudChoice"
 
@@ -44,22 +56,17 @@ case $cloudChoice
     cloudChoice="Azure"
    ;;
    *)
-    exit;;
+    exit
     ;;
 esac
 
+cd $cloudChoice
 
-
-cd ~/$uname/dmcdeploy
-echo "Updating the repo"
-git pull
-
-echo "Your code base is up to date.";
-echo  "What would you like to do?  [ENTER][q to quit] "
-echo  "1. Create a new DMC Stack"
-echo  "2. Update an existing DMC Stack Infrastructure"
-echo  "3. Update the codebase on an Existing DMC Stack without altering the infrastructure"
-echo  "4. Destroy existing DMC Stack Infrastructure"
+printf "\nWhat would you like to do?  [ENTER][q to quit] "
+printf "\n1. Create a new DMC Stack"
+printf "\n2. Update an existing DMC Stack Infrastructure"
+printf "\n3. Update the codebase on an Existing DMC Stack without altering the infrastructure"
+printf "\n4. Destroy existing DMC Stack Infrastructure"
 read -n 1 choice
 
 printf "\nYou chose $choice"
@@ -67,10 +74,9 @@ case $choice in [qQ]) exit;; esac
 if [ $choice == 1 ]
   then
 
-
    if [ -f terraform.tfstate ]
      then
-       terraform show $cloudChoice
+       terraform show
        printf "You have existing infrastructure on aws."
 
        printf "If you continue this script will edit that infrastructure in place.\n Would you like to continue? [y] [q to quit].\n You may wish to quit now and use terraform destroy to remove the infrastructure and rerun this script to make a new set.\n"
@@ -88,35 +94,36 @@ if [ $choice == 1 ]
     read -n 1 schoice
     if [ $schoice == 1 ]; then
       printf "\nCreating Developmnet Stack"
-      ./populateTerraformtfvarsDev.sh $uname $cloudChoice
+      scripts/populateTerraformtfvarsDevAWS.sh $uname
     else
       printf "\n Production Stack"
       printf "\n That part is not yet automated."
+      exit
 
     fi
 
-    terraform plan $cloudChoice
+    terraform plan
     printf  "\n Are you happy with the terrafom plan described above? \n Must answer yes or progam will not create your infrastructure. \n If you disagree go back and edit your terrafom.tfvars file manually and execute terraform apply.  [yes][q to quit] "
     read apply
     case $apply in [qQ]) exit;; esac
     if [ $apply == yes ]
       then
-        terraform apply $cloudChoice
-        echo "Results of Sanity Test Front"
+        terraform apply
+        printf "\nResults of Sanity Test Front"
         cat frontSanityTest.log
-        echo "Results of Sanity Test Rest"
+        printf "\nResults of Sanity Test Rest"
         cat restSanityTest.log
-        echo "Link the Stack Machines Together"
+        printf "\nLink the Stack Machines Together"
         ./linkMachines.sh
-        echo "Tightening the Dev Security groups where apropriate for the Dev Stack."
+        printf "\nTightening the Dev Security groups where apropriate for the Dev Stack."
         ./tightenSgDev.sh
-        echo "Lastly you must add your infrastructure to the appropriate LOAD BALANCER -- ex. ben-web in aws-west-2"
+        printf "\nLastly you must add your infrastructure to the appropriate LOAD BALANCER -- ex. ben-web in aws-west-2"
 
-        echo "Great Job Pal. "
+        printf "\nGreat Job Pal. "
       else
        exit
     fi
-    removePII
+    removePII ../terraform.tfvars
 fi
 
 
@@ -150,11 +157,11 @@ if [ $choice == 3 ]
   source ./updateStack.sh
   addPII
   printf "\nWhich instance do you wish to update? [q to quit]\n"
-  echo  "1. Front End Machine"
-  echo  "2. Rest Machine"
-  echo  "3. Db Machine"
-  echo  "4. Solr Machine"
-  echo  "5. Update all stack components to latest available builds. "
+  printf "\n1. Front End Machine"
+  printf "\n2. Rest Machine"
+  printf "\n3. Db Machine"
+  printf "\n4. Solr Machine"
+  printf "\n5. Update all stack components to latest available builds. "
   read -n 1 iupdate
   case $iupdate
      in [qQ])
