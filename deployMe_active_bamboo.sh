@@ -22,8 +22,8 @@ mv * ..
 sudo echo "admin: asdfgqwer, admin" >> /tmp/jetty-realm.properties
 sudo echo "user: asdfgqwer, user" >> /tmp/jetty-realm.properties
 
-wget http://mirror.cc.columbia.edu/pub/software/apache/activemq/5.13.2/apache-activemq-5.13.2-bin.tar.gz
-tar zxvf apache-activemq-5.13.2-bin.tar.gz
+wget http://mirror.cc.columbia.edu/pub/software/apache/activemq/5.13.2/apache-activemq-5.13.2-bin.tar.gz >& activemq_wget.log
+tar zxf apache-activemq-5.13.2-bin.tar.gz
 
 sudo mv apache-activemq-5.13.2 /opt
 sudo ln -sf /opt/apache-activemq-5.13.2/ /opt/activemq
